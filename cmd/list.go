@@ -17,10 +17,11 @@ var listCmd = &cobra.Command{
 			return
 		}
 
-		fmt.Printf("%-25s %-20s %-10s %-10s\n", "NAME", "IMAGE", "REPLICAS", "MODE")
-		fmt.Println("---------------------------------------------------------------")
+		fmt.Printf("%-25s %-20s %-10s %-10s %-10s\n", "NAME", "IMAGE", "REPLICAS", "MODE", "STATUS")
+		fmt.Println("--------------------------------------------------------------------------")
 		for _, svc := range services {
-			fmt.Printf("%-25s %-20s %-10s %-10s\n", svc.Name, svc.Image, svc.Replicas, svc.Mode)
+			fmt.Printf("%-25s %-20s %-10s %-10s %s%-10s\033[0m\n",
+				svc.Name, svc.Image, svc.Replicas, svc.Mode, svc.Color, svc.Status)
 		}
 	},
 }
