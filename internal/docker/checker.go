@@ -47,16 +47,8 @@ func GetSwarmServices() ([]ServiceInfo, error) {
 		name := svc.Spec.Name
 		image := svc.Spec.TaskTemplate.ContainerSpec.Image
 		mode := "replicated"
-		replicas := "?"
 		status := "unknown"
 		color := "\033[0m"
-
-		if svc.Spec.Mode.Global != nil {
-			mode = "global"
-			replicas = "-"
-		} else if svc.Spec.Mode.Replicated != nil {
-			replicas = fmt.Sprintf("%d", *svc.Spec.Mode.Replicated.Replicas)
-		}
 
 		running := 0
 		total := len(taskMap[svc.ID])
